@@ -87,7 +87,8 @@ namespace Leap.Unity {
     public Quaternion GetRiggedPalmRotation() {
       if (hand_ != null) {
         LeapTransform trs = hand_.Basis;
-        return CalculateRotation(trs);
+        //return CalculateRotation(trs);
+        return Quaternion.identity;
       }
       if (palm) {
         return palm.rotation;
@@ -95,11 +96,12 @@ namespace Leap.Unity {
       return Quaternion.identity;
     }
 
-    private Quaternion CalculateRotation(this LeapTransform trs) {
-      Vector3 up = trs.yBasis.ToVector3();
-      Vector3 forward = trs.zBasis.ToVector3();
-      return Quaternion.LookRotation(forward, up);
-    }
+ //   private Quaternion CalculateRotation(this LeapTransform trs) {
+ //     Vector3 up = trs.yBasis.ToVector3();
+ //     Vector3 forward = trs.zBasis.ToVector3();
+ //     return Quaternion.LookRotation(forward, up);
+ //   }
+
     /**Sets up the rigged hand by finding base of each finger by name */
     [ContextMenu("Setup Rigged Hand")]
     public void SetupRiggedHand() {
